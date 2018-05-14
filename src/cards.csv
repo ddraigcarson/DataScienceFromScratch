@@ -1100,3 +1100,4 @@ Deathrattle: Give a random friendly minion +2 Health.",1,1,Witchwood Imp,Common
 905,0,4,Neutral,"At the end of your turn, draw a Dream Card.",12,9,Ysera,Legendary,Minion
 906,0,0,Shaman,Deal 2 damage to a minion. Overload: (1),0,0,Zap!,Common,Spell
 907,0,2,Neutral,Battlecry: Choose a friendly minion. Add a Golden copy of it to your hand.,2,3,Zola the Gorgon,Legendary,Minion
+908,0,0,Warlock,Deal 2 damage to a friendly character. Discover a Demon,0,1,Dark Possession,Rare,Spell

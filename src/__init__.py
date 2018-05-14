@@ -106,8 +106,25 @@ def plot_swarm_plot(df):
     melted_df = pd.melt(stats_df,
                         id_vars=['name', 'rarity', 'type', 'character', 'effect'],
                         var_name='stat')
-    sns.swarmplot(x='stat', y='value', data=melted_df, hue='character')
+    sns.swarmplot(x='stat', y='value', data=melted_df, hue='character', split=True)
     plt.show()
+
+
+def print_data_stats(df):
+    minions = df[df.type == 'Minion']
+    spells = df[df.type == 'Spell']
+    print("Columns: " + str(list(df)))
+    print("Number of cards and columns: " + str(df.shape[0]))
+    print("Number of spells:" + str(spells.shape[0]))
+    print("Number of minions:" + str(minions.shape[0]))
+    print("----- Minions -----")
+    max_attack = minions[minions.attack == max(minions.attack)]
+    print("Max attack: " + str(max_attack.name.values) + " " + str(max_attack.attack.values))
+    print("Average mana cost: " + str(minions.mana.sum()/minions.shape[0]))
+    average_attack = minions.attack.sum()/minions.shape[0]
+    attack_values = np.array(minions.attack.values)
+    sd = np.sqrt((1/minions.shape[0])*np.sum((average_attack - attack_values)**2))
+    print("Standard deviation of attack: " + str(sd))
 
 
 def run():
@@ -118,9 +135,10 @@ def run():
     else:
         print("No local file; Getting from web")
         df = get_card_list_from_net()
-    plot_attack_vs_defense(df)
-    plot_box_plot(df)
-    plot_swarm_plot(df)
+    print_data_stats(df)
+    # plot_attack_vs_defense(df)
+    # plot_box_plot(df)
+    # plot_swarm_plot(df)
 
 
 run()
